@@ -1,0 +1,3 @@
+/home/kali/Downloads/c-projects/calculator/build/CMakeFiles/calc.dir
+/home/kali/Downloads/c-projects/calculator/build/CMakeFiles/edit_cache.dir
+/home/kali/Downloads/c-projects/calculator/build/CMakeFiles/rebuild_cache.dir
