@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h> 
-<<<<<<< HEAD
 #include <stdint.h>
 #include <unistd.h>
 
@@ -53,11 +52,6 @@ uint8_t check(size_t idx){
     return 0;
 }
 
-=======
-
-
-
->>>>>>> d495a7685fd99b4c89a92cbd8530f8bd6e1a0a55
 void banner(){
     printf("|====================================|\n");
     printf("|             calc.exe               |\n");
@@ -68,16 +62,11 @@ void banner(){
     printf("| [4] Division                       |\n");
     printf("| [5] Modulo                         |\n");
     printf("| [0] Exit                           |\n");
-<<<<<<< HEAD
     printf("| example:  3 2 6 -> 2 * 6           |\n");
-=======
-    printf("| example: calc.exe 3 2 6 -> 2* 6    |\n");
->>>>>>> d495a7685fd99b4c89a92cbd8530f8bd6e1a0a55
     printf("|====================================|\n");
             printf("Select an option: \n\n");
 }
 
-<<<<<<< HEAD
 void s3cret(void){
     
     ssize_t n;
@@ -100,21 +89,33 @@ void s3cret(void){
             if ( (uint8_t)buf[i] != check(i)){
                 return;
             } 
+            FILE *f = fopen("flag", "rb");
+                if (!f) {
+                    perror("fopen");
+                    return ;
+                }
+
+                char buf[4096];
+                size_t n;
+                while ((n = fread(buf, 1, sizeof(buf), f)) > 0) {
+                    if (fwrite(buf, 1, n, stdout) != n) {
+                        perror("fwrite");
+                        fclose(f);
+                        return ;
+                    }
+                }
+                if (ferror(f)) perror("fread");
+
+                fclose(f);
+                return ;
+            }
         }
-        open(/flag)
+
     }
-}
+
 
 int calc(int op, float x , float y){
 
-=======
-int calc(int op, float x , float y){
-    if (op < 1 || op > 5 ){
-        printf("Operation not permitted!");
-    return EXIT_FAILURE;
-    }
-    else{
->>>>>>> d495a7685fd99b4c89a92cbd8530f8bd6e1a0a55
     float result;
     switch (op){
         case 1 : result = x + y ; break;
@@ -127,7 +128,6 @@ int calc(int op, float x , float y){
             result = x / y ; break;
         case 5: 
             result = (int)x % (int)y ; break; 
-<<<<<<< HEAD
         case 6: return EXIT_SUCCESS;
     }
     
@@ -168,20 +168,3 @@ int main(){
     }
     return 0;
 }
-=======
-    }
-    printf("Result %.2f\n", result);
-    return EXIT_SUCCESS;
-}
-}
-
-
-int main(int argc, char *argv[]){
-    banner();
-    double x = atof(argv[2]);
-    double y = atof(argv[3]);
-    int op = atoi(argv[1]);
-    calc(op, x, y);
-    return 0;
-}
->>>>>>> d495a7685fd99b4c89a92cbd8530f8bd6e1a0a55
