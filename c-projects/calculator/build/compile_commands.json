@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/kali/Downloads/c-projects/calculator/build",
+  "command": "/usr/bin/gcc -g -std=gnu11 -o CMakeFiles/calc.dir/calc.c.o -c /home/kali/Downloads/c-projects/calculator/calc.c",
+  "file": "/home/kali/Downloads/c-projects/calculator/calc.c",
+  "output": "CMakeFiles/calc.dir/calc.c.o"
+}
+]
