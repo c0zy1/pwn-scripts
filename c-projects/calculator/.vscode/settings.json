@@ -1,0 +1,6 @@
+{
+  "cmake.configureOnOpen": true,
+  "cmake.buildOnSave": true,
+  "cmake.buildDirectory": "${workspaceFolder}/build",
+  "cmake.generator": "Ninja"
+}
