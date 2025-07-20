@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <math.h> 
 #include <stdint.h>
 #include <unistd.h>
 
-
+// eternalblue as 6 seperated byte arrays
 
 static const uint8_t EternalFraction1[]= {0x65, 0x74};
 static const uint8_t EternalFraction2[]= {0x65, 0x72};
@@ -14,14 +12,21 @@ static const uint8_t EternalFraction4[]= {0x6c, 0x62};
 static const uint8_t EternalFraction5[]= {0x6c, 0x75};
 static const uint8_t EternalFraction6[]= {0x65};
 
+// struct for one piece of 6 
+
 typedef struct{
     const uint8_t *data;
     size_t len;
 } EternalFraction;
 
+// big struct that assembles all the fractions into one big struct
+
 typedef struct{
     EternalFraction parts[6];
 } EternalPassword;
+
+
+// initialize the struct
 
 static const EternalPassword Et = {
         .parts = {
@@ -34,12 +39,16 @@ static const EternalPassword Et = {
         }
     };
 
+// calculating the length of the password for s3cret function 
+
 size_t length(void){
     size_t sum = 0;
     for (int i = 0; i < 6; i++)
         sum+= Et.parts[i].len;
     return sum;
 }
+
+// function to compare byte by byte, used in s3cret()
 
 uint8_t check(size_t idx){
     size_t offset = 0;
@@ -52,6 +61,8 @@ uint8_t check(size_t idx){
     return 0;
 }
 
+//banner for the calc
+
 void banner(){
     printf("|====================================|\n");
     printf("|             calc.exe               |\n");
@@ -61,11 +72,13 @@ void banner(){
     printf("| [3] Multiplication                 |\n");
     printf("| [4] Division                       |\n");
     printf("| [5] Modulo                         |\n");
-    printf("| [0] Exit                           |\n");
     printf("| example:  3 2 6 -> 2 * 6           |\n");
     printf("|====================================|\n");
             printf("Select an option: \n\n");
 }
+
+//secret flag function
+
 
 void s3cret(void){
     
@@ -73,7 +86,7 @@ void s3cret(void){
     size_t lengthi= length();
     char buf[100];
 
-    printf("do you want to go deeper into the rabbit hole?\n");
+    printf("do you want to go deeper into the rabbit hole?\n\n");
     printf("give me the key:\n\n");
     
     n = read(0, buf, lengthi+1);
@@ -113,6 +126,8 @@ void s3cret(void){
 
     }
 
+//main logic for the calculator 
+
 
 int calc(int op, float x , float y){
 
@@ -128,7 +143,6 @@ int calc(int op, float x , float y){
             result = x / y ; break;
         case 5: 
             result = (int)x % (int)y ; break; 
-        case 6: return EXIT_SUCCESS;
     }
     
     printf("Result %.2f\n", result);
@@ -159,7 +173,7 @@ int main(){
             while ((c = getchar()) != '\n' && c != EOF) {}
             continue;
         }
-        if (op < 0 || op > 5 ){
+        if (op < 0 || op > 5){
             printf("Operation not permitted!");
             return EXIT_FAILURE;
         }else{
