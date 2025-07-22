@@ -5,6 +5,6 @@ from pwn import *
 
 gdb.attach(p2, '''
     set disassembly-flavor intel
-    break *pwnme+138             # oder Adresse der verwundbaren Funktion
+                 # oder Adresse der verwundbaren Funktion
     continue
 ''')
